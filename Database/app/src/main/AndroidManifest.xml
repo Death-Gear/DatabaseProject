@@ -110,6 +110,13 @@
                 <category android:name="android.intent.category.APP_BROWSER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Drug_Activity">
+            <intent-filter>
+                <action android:name="com.example.shakkhor.database.Drug_Activity" />
+
+                <category android:name="android.intent.category.APP_BROWSER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

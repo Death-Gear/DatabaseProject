@@ -1,5 +1,6 @@
 package com.example.shakkhor.database;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -21,6 +22,7 @@ public class Search extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> drugs;
     SearchView searchView;
+    static String drug_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,10 @@ public class Search extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                setDrug_name(listView.getItemAtPosition(position).toString());
+                Intent intent = new Intent(Search.this, Drug_Activity.class);
+                intent.putExtra("caller", "Search");
+                startActivity(intent);
             }
         });
 
@@ -56,5 +62,13 @@ public class Search extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public static String getDrug_name() {
+        return drug_name;
+    }
+
+    public void setDrug_name(String drug_name) {
+        this.drug_name = drug_name;
     }
 }

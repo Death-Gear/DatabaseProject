@@ -753,6 +753,67 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         return drugs;
     }
 
+    public String getCompany(String drugName){
+        String company = "";
+        db = this.getReadableDatabase();
+        String query = "select Company_Name from " + Table4 + " where Company_ID in (select Drug_Company from " + Table2 + " where Drug_Name like '" + drugName +"')";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            company = cursor.getString(0);
+        }
+
+        return company;
+    }
+
+    public String getForm(String drugName){
+        String form = "";
+        db = this.getReadableDatabase();
+        String query = "select Drug_Form from " + Table2 + " where Drug_Name like '" + drugName + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            form = cursor.getString(0);
+        }
+
+        return form;
+    }
+
+    public String getStrength(String drugName){
+        String form = "";
+        db = this.getReadableDatabase();
+        String query = "select Drug_Strength from " + Table2 + " where Drug_Name like '" + drugName + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            form = cursor.getString(0);
+        }
+
+        return form;
+    }
+
+    public String getIndication(String drugName){
+        String company = "";
+        db = this.getReadableDatabase();
+        String query = "select Indication_Name from " + Table7 + " where Indication_ID in (select Drug_Indication from " + Table2 + " where Drug_Name like '" + drugName +"')";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            company = cursor.getString(0);
+        }
+
+        return company;
+    }
+
+    public String getClass(String drugName){
+        String company = "";
+        db = this.getReadableDatabase();
+        String query = "select Class_Name from " + Table3 + " where Class_ID in (select Drug_Class from " + Table2 + " where Drug_Name like '" + drugName +"')";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            company = cursor.getString(0);
+        }
+
+        return company;
+    }
+
+
     public String searchPass(String uname){
         db = this.getReadableDatabase();
 

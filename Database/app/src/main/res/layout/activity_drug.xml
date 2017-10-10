@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shakkhor.database.Drug_Activity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </include>
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/app_bar"
+        android:background="#230">
+
+        <TextView
+            android:id="@+id/drug_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Aldrin"
+            android:textSize="48dp" />
+
+        <TextView
+            android:id="@+id/drug_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/drug_name"
+            android:layout_marginLeft="76dp"
+            android:text="lotion"
+            android:textSize="16dp" />
+        <TextView
+            android:id="@+id/drug_strength"
+            android:layout_below="@+id/drug_form"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:text="15mg"
+            android:textSize="36dp"/>
+        <TextView
+            android:id="@+id/drug_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amico Laboratories"
+            android:layout_below="@+id/drug_strength"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:textSize="36dp"/>
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="300dp"
+            android:src="@drawable/ic_star_border_white_48dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/indicaion"
+        android:layout_below="@id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Indication: "
+        android:textSize="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        />
+    <TextView
+        android:id="@+id/drug_class"
+        android:layout_below="@id/indicaion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Class: "
+        android:textSize="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        />
+    <TextView
+        android:id="@+id/price"
+        android:layout_below="@id/drug_class"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Price:"
+        android:textSize="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        />
+    <TextView
+        android:id="@+id/drug_dose"
+        android:layout_below="@id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dose: "
+        android:textSize="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="8dp"
+        />
+</RelativeLayout>

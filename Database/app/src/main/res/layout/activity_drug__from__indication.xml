@@ -16,6 +16,8 @@
         android:id="@+id/list_drug_by_indication"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:divider="@android:color/white"
+        android:dividerHeight="1dp"
         android:layout_below="@+id/app_bar"></ListView>
 
 </RelativeLayout>
