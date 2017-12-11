@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_below="@+id/app_bar"
-        android:background="#230">
+        android:background="#082E8A">
 
         <TextView
             android:id="@+id/drug_name"
@@ -28,7 +28,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="Aldrin"
-            android:textSize="48dp" />
+            android:textSize="40dp" />
 
         <TextView
             android:id="@+id/drug_form"
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:text="15mg"
-            android:textSize="36dp"/>
+            android:textSize="30dp"/>
         <TextView
             android:id="@+id/drug_company"
             android:layout_width="wrap_content"
@@ -54,10 +54,10 @@
             android:layout_below="@+id/drug_strength"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
-            android:textSize="36dp"/>
+            android:textSize="26dp"/>
         <ImageView
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="300dp"
             android:src="@drawable/ic_star_border_white_48dp"/>

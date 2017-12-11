@@ -1,6 +1,7 @@
 package com.example.shakkhor.database;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,17 +12,23 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
     MakeDatabase helper = new MakeDatabase(this);
-
     private static EditText name;
     private static EditText password;
     private static Button signIn;
     private static Button signUp;
+    private static String str;
+    private static SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        sharedPreferences = getSharedPreferences("UserDetails", MODE_PRIVATE);
         LoginButton();
         SignupButton();
+        if(getUserLogin()){
+            Intent intent = new Intent(LoginActivity.this, UserActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void LoginButton(){
@@ -32,11 +39,12 @@ public class LoginActivity extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String str = name.getText().toString();
+                str = name.getText().toString();
                 String pass = password.getText().toString();
 
                 String Password = helper.searchPass(str);
                 if(pass.equals(Password)){
+                    storeUserDetails(true);
                     Intent intent = new Intent(LoginActivity.this, UserActivity.class);
                     startActivity(intent);
                 }else{
@@ -57,5 +65,27 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    public static String getUname(){
+        String uname = getUserName();
+        return uname;
+    }
+
+
+    public static void storeUserDetails(boolean loggedIn){
+        SharedPreferences.Editor myEditor = sharedPreferences.edit();
+
+        myEditor.putBoolean("LoggedIn", loggedIn);
+        myEditor.putString("Username", str);
+        myEditor.apply();
+    }
+
+    private boolean getUserLogin(){
+        boolean login = sharedPreferences.getBoolean("LoggedIn", false);
+        return login;
+    }
+    private static String getUserName(){
+        String uname = sharedPreferences.getString("Username","");
+        return uname;
     }
 }

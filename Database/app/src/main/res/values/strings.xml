@@ -18,10 +18,11 @@
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string-array name="nav_array">
-        <item>Profile</item>
+        <item>My Profile</item>
         <item>Share</item>
-        <item>Rate us</item>
-        <item>About us</item>
+        <item>Rate Us</item>
+        <item>About Us</item>
+        <item>Log Out</item>
 
     </string-array>
 

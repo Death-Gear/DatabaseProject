@@ -61,6 +61,12 @@ public class MakeDatabase  extends SQLiteOpenHelper {
     public static final String T7_Col1 = "Indication_ID";
     public static final String T7_Col2 = "Indication_Name";
 
+    public static final String Table8 = "Doctor";
+    public static final String T8_Col1 = "Doctor_ID";
+    public static final String T8_Col2 = "Doctor_Name";
+    public static final String T8_Col3 = "Expertise";
+    public static final String T8_Col4 = "Contact_No";
+
 
 
 
@@ -77,12 +83,87 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         db.execSQL("create table " +Table5 + " (Genre_ID INTEGER PRIMARY KEY, Genre_Name TEXT)");
         db.execSQL("create table " +Table6 + " (User_ID INTEGER, Drug_ID INTEGER)");
         db.execSQL("create table " +Table7 + " (Indication_ID PRIMARY KEY, Indication_Name TEXT)");
+        db.execSQL("create table " +Table8 + " (Doctor_ID PRIMARY KEY, Doctor_Name TEXT, Expertise TEXT, Contact_No INTEGER)");
         this.db = db;
         insertClasses(db);
         insertIndications(db);
         insertGenre(db);
         insertCompany(db);
         insertDrugs(db);
+        insertDoctors(db);
+    }
+    public void insertDoctors(SQLiteDatabase db){
+        ContentValues values = new ContentValues();
+
+        String query = "select * from " + Table8;
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+
+        values.put(T8_Col1, count);
+        values.put(T8_Col2, "Professor Dr. A. B. M. Yunus");
+        values.put(T8_Col3, "Hematology");
+        values.put(T8_Col4, "88028610313");
+        db.insert(Table8, null, values);
+        count++;
+
+        values.put(T8_Col1, count);
+        values.put(T8_Col2, "Professor Dr. A.A. Quoreshi");
+        values.put(T8_Col3, "Psychiatry");
+        values.put(T8_Col4, "88029896165");
+        db.insert(Table8, null, values);
+        count++;
+
+        values.put(T8_Col1, count);
+        values.put(T8_Col2, "Professor Dr. A.K.M. Anwarul Islam");
+        values.put(T8_Col3, "Urology");
+        values.put(T8_Col4, "88029134407");
+        db.insert(Table8, null, values);
+        count++;
+
+        values.put(T8_Col1, count);
+        values.put(T8_Col2, "Professor Dr. Alamgir kabir");
+        values.put(T8_Col3, "Hematology");
+        values.put(T8_Col4, "88029128835");
+        db.insert(Table8, null, values);
+        count++;
+    }
+    public ArrayList<String> getExpertise(){
+        ArrayList<String> expertise = new ArrayList<String>();
+        db = this.getReadableDatabase();
+        String query = "select distinct Expertise from " + Table8;
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            do{
+                expertise.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+
+        return expertise;
+    }
+    public ArrayList<String> getDoctor(String expertise){
+        ArrayList<String> doctor = new ArrayList<String>();
+        db = this.getReadableDatabase();
+        String query = "select Doctor_Name from " + Table8 + " where Expertise like '" + expertise + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            do{
+                doctor.add(cursor.getString(0));
+            }while (cursor.moveToNext());
+        }
+        return doctor;
+    }
+    public String getNumber(String doctor){
+        String num = "";
+        db = this.getReadableDatabase();
+        String query = "select Contact_No from " + Table8 + " where Doctor_Name like '" + doctor + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            do{
+                num = (cursor.getString(0));
+                break;
+            }while (cursor.moveToNext());
+        }
+        return num;
     }
     public void insertIndications(SQLiteDatabase db){
         //db = this.getWritableDatabase();
@@ -93,12 +174,12 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         int count = cursor.getCount();
 
         values.put(T7_Col1, count);
-        values.put(T7_Col2, "Fever ans Mild to moderate pain such as osteoarthritis, rheumatoid arthritis, chronic low back pain, Renal stone postoperative mild to moderate pain");
+        values.put(T7_Col2, "Fever and Mild to moderate pain");
         db.insert(Table7, null, values);
         count++;
 
         values.put(T7_Col1, count);
-        values.put(T7_Col2, "Cardian arrest, Anaphylaxiz, Superficial bleeding, acute asthma");
+        values.put(T7_Col2, "Cardian arrest");
         db.insert(Table7, null, values);
         count++;
 
@@ -113,7 +194,7 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         count++;
 
         values.put(T7_Col1, count);
-        values.put(T7_Col2, "Protection from harmful UV rays. Ideal for those with photodermatoses & reduced skin pigmentation, sunblock");
+        values.put(T7_Col2, "Protection from harmful UV rays");
         db.insert(Table7, null, values);
         count++;
 
@@ -128,7 +209,7 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         count++;
 
         values.put(T7_Col1, count);
-        values.put(T7_Col2, "Cryptococcal meningtitis, candidiasis, tinea pedis, tinea cruris, tines corporis, Vaginal candidiatis, onychomycosis, Coccidiodomycosis, Cryptococcosis, Histoplasmosis, Mucosal Candidiasis, Candidal balanitis, Dermatophytosis");
+        values.put(T7_Col2, "Cryptococcal meningtitis");
         db.insert(Table7, null, values);
         count++;
     }
@@ -355,6 +436,19 @@ public class MakeDatabase  extends SQLiteOpenHelper {
         db.insert(Table1, null, values);
 
         db.close();
+    }
+    public String getUserEmail(String Uname, String Pass){
+        String email = "";
+        db = this.getReadableDatabase();
+        String query = "select User_Email from " + Table1 + " where User_Name like '" + Uname + "' and User_Password like '" + Pass + "'";
+        Cursor cursor = db.rawQuery(query, null);
+        if(cursor.moveToFirst()){
+            do{
+                email = (cursor.getString(0));
+                break;
+            }while (cursor.moveToNext());
+        }
+        return email;
     }
     public void insertCompany(SQLiteDatabase db){
         String query = "select * from " + Table4;

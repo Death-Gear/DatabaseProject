@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shakkhor.database.Drug_By_Indication">
+    tools:context="com.example.shakkhor.database.Drug_By_Indication"
+    android:background="#235">
 
     <include
         android:id="@+id/app_bar"
         layout="@layout/app_bar"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+        android:layout_width="368dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
 
     </include>
 

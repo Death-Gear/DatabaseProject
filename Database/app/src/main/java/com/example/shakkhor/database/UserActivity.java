@@ -6,12 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.TextView;
 
 public class UserActivity extends AppCompatActivity  {
 
     private static ImageButton Search, Indication, Vcard, Class, News, FavoriteDrug, AddDrug, Prescription, Job;
     private Toolbar toolbar;
+    private TextView Username;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +43,25 @@ public class UserActivity extends AppCompatActivity  {
         AddDrug = (ImageButton)findViewById(R.id.imageButton_addDrug);
         Prescription = (ImageButton)findViewById(R.id.imageButton_prescription);
         Job = (ImageButton)findViewById(R.id.imageButton_job);
+        Username = (TextView)findViewById(R.id.uname);
+        listView = (ListView) findViewById(R.id.left_drawer);
 
+        Username.setText(LoginActivity.getUname(), null);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String str = listView.getItemAtPosition(position).toString();
+                if(str.equals("About Us")){
+                    Intent intent = new Intent(UserActivity.this, AboutUs.class);
+                    startActivity(intent);
+                }else if (str.equals("Log Out")){
+                    LoginActivity.storeUserDetails(false);
+                    Intent intent = new Intent(UserActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

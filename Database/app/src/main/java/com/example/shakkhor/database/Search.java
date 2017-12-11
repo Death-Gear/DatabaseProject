@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,8 @@ public class Search extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<String> drugs;
     SearchView searchView;
+    EditText searchEditText;
+    ImageView closeButton;
     static String drug_name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,8 @@ public class Search extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //Toast.makeText(Search.this, "Search Activity", Toast.LENGTH_LONG).show();
         searchView = (SearchView) findViewById(R.id.search_view);
+        searchEditText = (EditText) findViewById(R.id.search_src_text);
+        closeButton = (ImageView) findViewById(R.id.search_close_btn);
 
         drugs = helper.getDrugs();
         Collections.sort(drugs);
@@ -49,6 +55,13 @@ public class Search extends AppCompatActivity {
             }
         });
 
+        searchView.onActionViewExpanded();
+        searchView.setIconified(false);
+        searchView.setQueryHint("Search");
+        if(!searchView.isFocused()) {
+            searchView.clearFocus();
+        }
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
@@ -60,6 +73,16 @@ public class Search extends AppCompatActivity {
                 adapter.getFilter().filter(text);
 
                 return false;
+            }
+        });
+
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                searchEditText.setText("");
+
+                searchView.setQuery("", false);
+                searchView.clearFocus();
             }
         });
     }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.shakkhor.database.Drug_From_Class">
+    tools:context="com.example.shakkhor.database.Drug_From_Class"
+    android:background="#235">
 
     <include
         android:id="@+id/app_bar"

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg3"
+    tools:context="com.example.shakkhor.database.AboutUs">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar">
+
+    </include>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:text="About Us"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:text="Medilogy is a mobile drug index app. It is made and owned by students of SUST. This app is inspired from an existing app called DIMS. It aims to be he most comprehensive, advanced and up-to-date information source available and recent drug products to serve the healthcare and pharmaceutical professionals in the country
+
+Our team comprises of IT experts and CLinical Professionals who have a strong understanding of evolving trends in the healthcare industry. "/>
+
+</RelativeLayout>
